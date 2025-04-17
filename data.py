@@ -22,7 +22,6 @@ class Game:
         self.away_score = away_score
         self.date = date
 
-# Sample MLB Teams
 def initialize_teams():
     teams = {
         # AL East
@@ -70,7 +69,6 @@ def initialize_teams():
     
     return teams
 
-# Sample games data (for demonstration)
 def sample_games(teams):
     url = "https://plaintextsports.com/mlb/2025/schedule"
 
@@ -93,8 +91,7 @@ def sample_games(teams):
                 if game_day:
                     games_link = game_day.find_all("a")
                     
-                    # Check there are at least 3 <a> tags for a full game entry
-                    for i in range(0, len(games_link), 3):
+                    for i in range(0, len(games_link), 3):  # Check there are at least 3 <a> tags for a full game entry
                         if i + 2 < len(games_link):  # Ensure there are 3 elements for a full game
                             away_team_name = games_link[i].get_text(strip=True)
                             home_team_name = games_link[i+1].get_text(strip=True)

@@ -10,15 +10,15 @@ os.makedirs('build', exist_ok=True)
 # Initialize Jinja environment
 env = Environment(loader=FileSystemLoader('templates'))
 
-# Initialize data (just like in app.py)
+# Initialize data (similar to app.py)
 teams = initialize_teams()
 games = sample_games(teams)
 process_games(games, teams)
 
-# Sort teams by rating (like in the index route)
+# Sort teams by rating
 sorted_teams = sorted(teams.values(), key=lambda x: x.rating, reverse=True)
 
-# Set last_updated
+# Set last_updated for the time at the end
 eastern = pytz.timezone('America/New_York')
 last_updated = datetime.now(eastern)
 
