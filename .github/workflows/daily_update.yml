@@ -5,7 +5,32 @@ on:
     - cron: '0 6 * * *'  # 6:00 UTC
   workflow_dispatch:     
 
-jobs:
+jobs:     
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+        
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install packages
+      run: |
+        python -m pip install --upgrade pip
+        pip install flask jinja2 requests beautifulsoup4 pytz 
+        
+    - name: Generate static site
+      run: python generate_static_site.py
+        
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: build
+        branch: gh-pages
   copy-static-to-gh-pages:
     runs-on: ubuntu-latest
     steps:
@@ -46,29 +71,3 @@ jobs:
             git push
             echo "Static folder updated successfully"
           fi
-          
-  update:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-        
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-        
-    - name: Install packages
-      run: |
-        python -m pip install --upgrade pip
-        pip install flask jinja2 requests beautifulsoup4 pytz 
-        
-    - name: Generate static site
-      run: python generate_static_site.py
-        
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: build
-        branch: gh-pages
