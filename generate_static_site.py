@@ -8,7 +8,7 @@ from data import initialize_teams, sample_games, process_games
 os.makedirs('build', exist_ok=True)
 
 # Initialize Jinja environment
-env = Environment(loader=FileSystemLoader('.'))
+env = Environment(loader=FileSystemLoader('templates'))
 
 # Initialize data (just like in app.py)
 teams = initialize_teams()
