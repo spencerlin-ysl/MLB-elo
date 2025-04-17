@@ -63,7 +63,9 @@
         {% for team in teams %}
         <tr>
             <td>{{ loop.index }}</td>
-            <td>{{ team.name }} ({{ team.abbreviation }})</td>
+            <td>
+                <img src=" {{ url_for('static', filename=team.icon) }} " alt="{{ team.name }}" width="30" height="30" style="vertical-align: middle;">
+                {{ team.name }} ({{ team.abbreviation }})</td>
             <td>{{ team.division }}</td>
             <td>{{ team.rating|round|int }}</td>
             <td>{{ team.wins }}-{{ team.losses }}</td>
