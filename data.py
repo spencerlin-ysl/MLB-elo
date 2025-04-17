@@ -4,7 +4,7 @@ from datetime import date, timedelta, datetime
 from bs4 import BeautifulSoup
 
 class Team:
-    def __init__(self, name, abbreviation, division, initial_rating=1500):
+    def __init__(self, name, abbreviation, division, initial_rating=1500, icon = ""):
         self.name = name
         self.abbreviation = abbreviation
         self.division = division
@@ -12,6 +12,7 @@ class Team:
         self.games_played = 0
         self.wins = 0
         self.losses = 0
+        self.icon = icon
 
 class Game:
     def __init__(self, home_team, away_team, home_score, away_score, date):
@@ -25,46 +26,46 @@ class Game:
 def initialize_teams():
     teams = {
         # AL East
-        "Yankees": Team("New York Yankees", "NYY", "AL East"),
-        "Red Sox": Team("Boston Red Sox", "BOS", "AL East"),
-        "Rays": Team("Tampa Bay Rays", "TBR", "AL East"),
-        "Blue Jays": Team("Toronto Blue Jays", "TOR", "AL East"),
-        "Orioles": Team("Baltimore Orioles", "BAL", "AL East"),
+        "Yankees": Team("New York Yankees", "NYY", "AL East", icon = "NYY.png"),
+        "Red Sox": Team("Boston Red Sox", "BOS", "AL East", icon = "BOS.png"),
+        "Rays": Team("Tampa Bay Rays", "TBR", "AL East", icon = "TB.png"),
+        "Blue Jays": Team("Toronto Blue Jays", "TOR", "AL East", icon = "TOR.png"),
+        "Orioles": Team("Baltimore Orioles", "BAL", "AL East", icon = "BAL.png"),
         
         # AL Central
-        "Guardians": Team("Cleveland Guardians", "CLE", "AL Central"),
-        "Twins": Team("Minnesota Twins", "MIN", "AL Central"),
-        "White Sox": Team("Chicago White Sox", "CHW", "AL Central"),
-        "Tigers": Team("Detroit Tigers", "DET", "AL Central"),
-        "Royals": Team("Kansas City Royals", "KCR", "AL Central"),
+        "Guardians": Team("Cleveland Guardians", "CLE", "AL Central", icon = "CLE.png"),
+        "Twins": Team("Minnesota Twins", "MIN", "AL Central", icon = "MIN.png"),
+        "White Sox": Team("Chicago White Sox", "CHW", "AL Central", icon = "CHW.png"),
+        "Tigers": Team("Detroit Tigers", "DET", "AL Central", icon = "DET.png"),
+        "Royals": Team("Kansas City Royals", "KCR", "AL Central", icon = "KCR.png"),
         
         # AL West
-        "Astros": Team("Houston Astros", "HOU", "AL West"),
-        "Mariners": Team("Seattle Mariners", "SEA", "AL West"),
-        "Angels": Team("Los Angeles Angels", "LAA", "AL West"),
-        "Rangers": Team("Texas Rangers", "TEX", "AL West"),
-        "Athletics": Team("Athletics", "ATH", "AL West"),
+        "Astros": Team("Houston Astros", "HOU", "AL West", icon = "HOU.png"),
+        "Mariners": Team("Seattle Mariners", "SEA", "AL West", icon = "SEA.png"),
+        "Angels": Team("Los Angeles Angels", "LAA", "AL West", icon = "LAA.png"),
+        "Rangers": Team("Texas Rangers", "TEX", "AL West", icon = "TEX.png"),
+        "Athletics": Team("Athletics", "ATH", "AL West", icon = "OAK.png"),
         
         # NL East
-        "Braves": Team("Atlanta Braves", "ATL", "NL East"),
-        "Mets": Team("New York Mets", "NYM", "NL East"),
-        "Phillies": Team("Philadelphia Phillies", "PHI", "NL East"),
-        "Marlins": Team("Miami Marlins", "MIA", "NL East"),
-        "Nationals": Team("Washington Nationals", "WSN", "NL East"),
+        "Braves": Team("Atlanta Braves", "ATL", "NL East", icon = "ATL.png"),
+        "Mets": Team("New York Mets", "NYM", "NL East", icon = "NYM.png"),
+        "Phillies": Team("Philadelphia Phillies", "PHI", "NL East", icon = "PHI.png"),
+        "Marlins": Team("Miami Marlins", "MIA", "NL East", icon = "MIA.png"),
+        "Nationals": Team("Washington Nationals", "WSN", "NL East", icon = "WAS.png"),
         
         # NL Central
-        "Brewers": Team("Milwaukee Brewers", "MIL", "NL Central"),
-        "Cardinals": Team("St. Louis Cardinals", "STL", "NL Central"),
-        "Cubs": Team("Chicago Cubs", "CHC", "NL Central"),
-        "Reds": Team("Cincinnati Reds", "CIN", "NL Central"),
-        "Pirates": Team("Pittsburgh Pirates", "PIT", "NL Central"),
+        "Brewers": Team("Milwaukee Brewers", "MIL", "NL Central", icon = "MIL.png"),
+        "Cardinals": Team("St. Louis Cardinals", "STL", "NL Central", icon = "STL.png"),
+        "Cubs": Team("Chicago Cubs", "CHC", "NL Central", icon = "CHC.png"),
+        "Reds": Team("Cincinnati Reds", "CIN", "NL Central", icon = "CIN.png"),
+        "Pirates": Team("Pittsburgh Pirates", "PIT", "NL Central", icon = "PIT.png"),
         
         # NL West
-        "Dodgers": Team("Los Angeles Dodgers", "LAD", "NL West"),
-        "Padres": Team("San Diego Padres", "SDP", "NL West"),
-        "Giants": Team("San Francisco Giants", "SFG", "NL West"),
-        "D-backs": Team("Arizona Diamondbacks", "ARI", "NL West"),
-        "Rockies": Team("Colorado Rockies", "COL", "NL West"),
+        "Dodgers": Team("Los Angeles Dodgers", "LAD", "NL West", icon = "LAD.png"),
+        "Padres": Team("San Diego Padres", "SDP", "NL West", icon = "SD.png"),
+        "Giants": Team("San Francisco Giants", "SFG", "NL West", icon = "SF.png"),
+        "D-backs": Team("Arizona Diamondbacks", "ARI", "NL West", icon = "AZ.png"),
+        "Rockies": Team("Colorado Rockies", "COL", "NL West", icon = "COR.png"),
     }
     
     return teams
@@ -111,7 +112,7 @@ def sample_games(teams):
                                         home_score = int(score_text.split("-")[1])
                                         
                                         games.append(Game(home_team, away_team, home_score, away_score, str(parsed_date)))
-                                    except (IndexError, ValueError):
+                                    except ValueError:
                                         pass
     return games
 
