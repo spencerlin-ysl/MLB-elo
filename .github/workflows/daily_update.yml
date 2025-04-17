@@ -31,10 +31,12 @@ jobs:
       with:
         folder: build
         branch: gh-pages
-  copy-static-to-gh-pages:
+
+  copy-logos:
     runs-on: ubuntu-latest
+    needs: update  # This ensures this job runs after the update job completes
     steps:
-      - name: Checkout repository
+      - name: Checkout main branch
         uses: actions/checkout@v3
         with:
           ref: main
@@ -46,12 +48,12 @@ jobs:
           ref: gh-pages
           path: gh-pages-branch
       
-      - name: Copy static folder
+      - name: Copy static folder with team logos
         run: |
-          # Create directories if they don't exist
+          # Create static directory in gh-pages if it doesn't exist
           mkdir -p gh-pages-branch/static
           
-          # Copy static folder from main to gh-pages
+          # Copy team logos from main branch to gh-pages
           cp -r main-branch/static/* gh-pages-branch/static/
           
           cd gh-pages-branch
@@ -67,7 +69,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update static folder from main branch"
+            git commit -m "Update MLB team logos from main branch"
             git push
-            echo "Static folder updated successfully"
+            echo "Team logos updated successfully"
           fi
