@@ -6,6 +6,47 @@ on:
   workflow_dispatch:     
 
 jobs:
+  copy-static-to-gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          path: main-branch
+          
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: gh-pages-branch
+      
+      - name: Copy static folder
+        run: |
+          # Create directories if they don't exist
+          mkdir -p gh-pages-branch/static
+          
+          # Copy static folder from main to gh-pages
+          cp -r main-branch/static/* gh-pages-branch/static/
+          
+          cd gh-pages-branch
+          
+          # Set up git config
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          
+          # Add changes to git
+          git add static/
+          
+          # Only commit if there are changes
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update static folder from main branch"
+            git push
+            echo "Static folder updated successfully"
+          fi
+          
   update:
     runs-on: ubuntu-latest
     
@@ -25,9 +66,6 @@ jobs:
         
     - name: Generate static site
       run: python generate_static_site.py
-
-    - name: Copy images from main to output
-      run: cp -r main-branch/static gh-pages-branch/static
         
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
