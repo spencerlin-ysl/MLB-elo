@@ -27,7 +27,7 @@ jobs:
       run: python generate_static_site.py
 
     - name: Copy images from main to output
-      run: cp -r main/image gh-pages/image
+      run: cp -r main/static gh-pages/static
         
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
