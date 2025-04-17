@@ -4,7 +4,7 @@ def calculate_expected_result(rating_a, rating_b):
     """Calculate expected outcome based on Elo ratings"""
     return 1.0 / (1.0 + math.pow(10, (rating_b - rating_a) / 400))
 
-def update_elo(rating, expected, actual, k_factor=20):
+def update_elo(rating, expected, actual, k_factor=32):
     """Update Elo rating based on game result"""
     return rating + k_factor * (actual - expected)
 
