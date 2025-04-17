@@ -12,7 +12,7 @@ class Team:
         self.games_played = 0
         self.wins = 0
         self.losses = 0
-        self.icon = icon
+        self.icon = f"static/{team.icon}"
 
 class Game:
     def __init__(self, home_team, away_team, home_score, away_score, date):
