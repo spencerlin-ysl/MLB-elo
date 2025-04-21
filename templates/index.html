@@ -64,8 +64,11 @@
         <tr>
             <td>{{ loop.index }}</td>
             <td>
-                <img src="{{ team.icon }}" alt="{{ team.name }}" width="30" height="30" style="vertical-align: middle;">
-                {{ team.name }} ({{ team.abbreviation }})</td>
+                <a href="team/{{ team.id }}.html" class="team-link">
+                    <img src="{{ team.icon }}" alt="{{ team.name }}" width="30" height="30" class="team-icon">
+                    {{ team.name }} ({{ team.abbreviation }})
+                </a>
+            </td>
             <td>{{ team.division }}</td>
             <td>{{ team.rating|round|int }}</td>
             <td>{{ team.wins }}-{{ team.losses }}</td>
