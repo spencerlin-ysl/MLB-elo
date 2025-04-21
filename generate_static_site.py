@@ -44,6 +44,7 @@ for team_name, team in teams.items():
                 'home_score': game.home_score,
                 'away_score': game.away_score,
                 'winner_id': game.home_team.abbreviation if game.home_score > game.away_score else game.away_team.abbreviation,
+                'elo_change': processed_games.home_rating_change
             }
             team_games.append(game_info)
     
