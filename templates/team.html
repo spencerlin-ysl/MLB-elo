@@ -95,9 +95,9 @@
             </td>
             <td>{{ 'W' if game.winner_id == team.id else 'L' }}</td>
             <td>{{ game.home_score }}-{{ game.away_score }}</td>
-            <td class="elo-change {{ 'positive' if game.elo_change > 0 else 'negative' }}">
+            <!--- <td class="elo-change {{ 'positive' if game.elo_change > 0 else 'negative' }}">
                 {{ game.elo_change|round(2) if game.elo_change else "N/A" }}
-            </td>
+            </td> --->
         </tr>
         {% endfor %}
     </table>
