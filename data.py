@@ -115,9 +115,14 @@ def sample_games(teams):
 
 # Process games and update Elo ratings
 def process_games(games, teams):
+    game_results = []
+
     for game in games:
         home_team = game.home_team
         away_team = game.away_team
+
+        old_home_rating = home_team.rating
+        old_away_rating = away_team.rating
         
         # Update ratings
         new_home_rating, new_away_rating = calculate_new_ratings(
@@ -127,6 +132,9 @@ def process_games(games, teams):
         
         home_team.rating = new_home_rating
         away_team.rating = new_away_rating
+
+        home_rating_change = new_home_rating - old_home_rating
+        away_rating_change = new_away_rating - old_away_rating
         
         # Update win/loss records
         home_team.games_played += 1
@@ -135,8 +143,24 @@ def process_games(games, teams):
         if game.home_score > game.away_score:
             home_team.wins += 1
             away_team.losses += 1
+            winner = home_team
         else:
             home_team.losses += 1
             away_team.wins += 1
+            winner = away_team
+
+        game_result = {
+            'date': game.date,
+            'home_team': home_team,
+            'away_team': away_team,
+            'home_score': game.home_score,
+            'away_score': game.away_score,
+            'home_rating_change': home_rating_change,
+            'away_rating_change': away_rating_change,
+            'winner': winner
+        }
+        game_results.append(game_result)
+    
+    return game_results
 
 

@@ -31,9 +31,33 @@ with open('build/index.html', 'w') as f:
 # Generate team pages
 team_template = env.get_template('team.html')
 os.makedirs('build/team', exist_ok=True)
-for team_id, team in teams.items():
+for team_name, team in teams.items():
+    team_games = []
+    for game in games:
+        if game.home_team == team or game.away_team == team:
+            game_info = {
+                'date': datetime.strptime(game.date, "%Y-%m-%d").date(),
+                'home_team': game.home_team,
+                'away_team': game.away_team,
+                'home_team_id': game.home_team.abbreviation,
+                'away_team_id': game.away_team.abbreviation,
+                'home_score': game.home_score,
+                'away_score': game.away_score,
+                'winner_id': game.home_team.abbreviation if game.home_score > game.away_score else game.away_team.abbreviation,
+                'elo_change': game.home_rating_change
+            }
+            team_games.append(game_info)
+    
+    # Sort games by date (newest first)
+    team_games.sort(key=lambda x: x['date'], reverse=True)
+    
+    # Add games to team object for template
+    team.games = team_games
+    team.id = team.abbreviation  # Use abbreviation as ID
+    
+    # Generate team page
     team_html = team_template.render(team=team, last_updated=last_updated)
-    with open(f'build/team/{team_id}.html', 'w') as f:
+    with open(f'build/team/{team.abbreviation}.html', 'w') as f:
         f.write(team_html)
 
 print("Static site generated in 'build' directory")

@@ -25,11 +25,17 @@ def index():
     
     return render_template('index.html', teams=sorted_teams, last_updated=last_updated)
 
-@app.route('/team/<team_id>')
-def team_detail(team_id):
-    team = teams.get(team_id)
+@app.route('/team/<team_abbrev>')
+def team_detail(team_abbrev):
+    # Find team by abbreviation
+    team = None
+    for team_obj in teams.values():
+        if team_obj.abbreviation == team_abbrev:
+            team = team_obj
+            break
+
     if team:
-        return render_template('team.html', team=team)
+        return render_template('team.html', team=team, teams=teams)
     return "Team not found", 404
 
 @app.route('/add_game', methods=['GET', 'POST'])
@@ -76,3 +82,4 @@ def add_game():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
