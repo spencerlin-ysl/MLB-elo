@@ -13,7 +13,7 @@ env = Environment(loader=FileSystemLoader('templates'))
 # Initialize data (similar to app.py)
 teams = initialize_teams()
 games = sample_games(teams)
-process_games(games, teams)
+processed_games = process_games(games, teams)
 
 # Sort teams by rating
 sorted_teams = sorted(teams.values(), key=lambda x: x.rating, reverse=True)
@@ -44,7 +44,6 @@ for team_name, team in teams.items():
                 'home_score': game.home_score,
                 'away_score': game.away_score,
                 'winner_id': game.home_team.abbreviation if game.home_score > game.away_score else game.away_team.abbreviation,
-                'elo_change': game.home_rating_change
             }
             team_games.append(game_info)
     
