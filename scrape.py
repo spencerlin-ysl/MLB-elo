@@ -3,7 +3,7 @@ from datetime import date, timedelta, datetime
 from bs4 import BeautifulSoup
 
 
-url = "https://plaintextsports.com/mlb/2025/schedule"
+url = "https://plaintextsports.com/mlb/2026/schedule"
 
 payload = {}
 headers = {}
