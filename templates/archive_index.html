@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLB Elo Ratings — Archive</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #002D72;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-top: -10px;
+            margin-bottom: 30px;
+        }
+
+        /* ── Navbar ── */
+        .navbar {
+            background-color: #002D72;
+            padding: 10px 16px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        .navbar a:hover {
+            background-color: #001A41;
+        }
+
+        /* ── Year cards ── */
+        .year-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .year-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 28px 16px;
+            background-color: #f4f7ff;
+            border: 2px solid #002D72;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #002D72;
+            font-size: 22px;
+            font-weight: bold;
+            transition: background-color 0.15s, transform 0.1s;
+        }
+        .year-card:hover {
+            background-color: #002D72;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .year-card .label {
+            font-size: 12px;
+            font-weight: normal;
+            margin-top: 4px;
+            opacity: 0.7;
+        }
+        .no-archives {
+            text-align: center;
+            color: #888;
+            margin-top: 40px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/">← Current Season</a>
+    </div>
+
+    <h1>Season Archive</h1>
+    <p class="subtitle">Browse final Elo standings from past MLB seasons</p>
+
+    {% if years %}
+        <div class="year-grid">
+            {% for year in years %}
+            <a class="year-card" href="/archive/{{ year }}">
+                {{ year }}
+                <span class="label">Season</span>
+            </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-archives">No archived seasons yet. Archives are generated automatically each March 15.</p>
+    {% endif %}
+
+</body>
+</html>

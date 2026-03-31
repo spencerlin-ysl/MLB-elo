@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLB Elo Ratings — {{ year }} Archive</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #002D72;
+            text-align: center;
+        }
+        .archive-badge {
+            display: inline-block;
+            background-color: #E8C04A;
+            color: #002D72;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 12px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #002D72;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .team-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ── Navbar ── */
+        .navbar {
+            background-color: #002D72;
+            padding: 10px 16px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navbar-left a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            margin-right: 4px;
+            border-radius: 4px;
+        }
+        .navbar-left a:hover {
+            background-color: #001A41;
+        }
+        .archived-note {
+            color: #aaa;
+            font-size: 13px;
+            margin-top: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="/">← Current Season</a>
+            <a href="/archive">All Archives</a>
+        </div>
+    </div>
+
+    <h1>
+        MLB Elo Ratings — {{ year }}
+        <span class="archive-badge">ARCHIVED</span>
+    </h1>
+    <p class="archived-note">Final standings at end of {{ year }} season · Snapshot taken {{ archived_at }} ET</p>
+
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Team</th>
+            <th>Division</th>
+            <th>Final Elo</th>
+            <th>W-L</th>
+        </tr>
+        {% for team in teams %}
+        <tr>
+            <td>{{ team.rank }}</td>
+            <td>
+                <div class="team-row">
+                    <img src="../../{{ team.icon }}" alt="{{ team.name }}" width="30" height="30">
+                    {{ team.name }} ({{ team.abbreviation }})
+                </div>
+            </td>
+            <td>{{ team.division }}</td>
+            <td>{{ team.rating }}</td>
+            <td>{{ team.wins }}-{{ team.losses }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

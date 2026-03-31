@@ -1,0 +1,306 @@
+{
+  "year": 2025,
+  "archived_at": "2026-03-30 18:39:13",
+  "teams": [
+    {
+      "rank": 1,
+      "name": "New York Yankees",
+      "abbreviation": "NYY",
+      "division": "AL East",
+      "rating": 1654,
+      "wins": 97,
+      "losses": 72,
+      "icon": "static/NYY.png"
+    },
+    {
+      "rank": 2,
+      "name": "Los Angeles Dodgers",
+      "abbreviation": "LAD",
+      "division": "NL West",
+      "rating": 1620,
+      "wins": 106,
+      "losses": 73,
+      "icon": "static/LAD.png"
+    },
+    {
+      "rank": 3,
+      "name": "Cleveland Guardians",
+      "abbreviation": "CLE",
+      "division": "AL Central",
+      "rating": 1600,
+      "wins": 89,
+      "losses": 77,
+      "icon": "static/CLE.png"
+    },
+    {
+      "rank": 4,
+      "name": "Philadelphia Phillies",
+      "abbreviation": "PHI",
+      "division": "NL East",
+      "rating": 1590,
+      "wins": 97,
+      "losses": 69,
+      "icon": "static/PHI.png"
+    },
+    {
+      "rank": 5,
+      "name": "Seattle Mariners",
+      "abbreviation": "SEA",
+      "division": "AL West",
+      "rating": 1583,
+      "wins": 96,
+      "losses": 78,
+      "icon": "static/SEA.png"
+    },
+    {
+      "rank": 6,
+      "name": "Toronto Blue Jays",
+      "abbreviation": "TOR",
+      "division": "AL East",
+      "rating": 1564,
+      "wins": 104,
+      "losses": 76,
+      "icon": "static/TOR.png"
+    },
+    {
+      "rank": 7,
+      "name": "Boston Red Sox",
+      "abbreviation": "BOS",
+      "division": "AL East",
+      "rating": 1559,
+      "wins": 91,
+      "losses": 75,
+      "icon": "static/BOS.png"
+    },
+    {
+      "rank": 8,
+      "name": "Miami Marlins",
+      "abbreviation": "MIA",
+      "division": "NL East",
+      "rating": 1540,
+      "wins": 79,
+      "losses": 83,
+      "icon": "static/MIA.png"
+    },
+    {
+      "rank": 9,
+      "name": "San Diego Padres",
+      "abbreviation": "SDP",
+      "division": "NL West",
+      "rating": 1534,
+      "wins": 91,
+      "losses": 74,
+      "icon": "static/SD.png"
+    },
+    {
+      "rank": 10,
+      "name": "Atlanta Braves",
+      "abbreviation": "ATL",
+      "division": "NL East",
+      "rating": 1529,
+      "wins": 77,
+      "losses": 86,
+      "icon": "static/ATL.png"
+    },
+    {
+      "rank": 11,
+      "name": "Cincinnati Reds",
+      "abbreviation": "CIN",
+      "division": "NL Central",
+      "rating": 1526,
+      "wins": 84,
+      "losses": 83,
+      "icon": "static/CIN.png"
+    },
+    {
+      "rank": 12,
+      "name": "Kansas City Royals",
+      "abbreviation": "KCR",
+      "division": "AL Central",
+      "rating": 1524,
+      "wins": 82,
+      "losses": 80,
+      "icon": "static/KCR.png"
+    },
+    {
+      "rank": 13,
+      "name": "Milwaukee Brewers",
+      "abbreviation": "MIL",
+      "division": "NL Central",
+      "rating": 1518,
+      "wins": 100,
+      "losses": 71,
+      "icon": "static/MIL.png"
+    },
+    {
+      "rank": 14,
+      "name": "Chicago Cubs",
+      "abbreviation": "CHC",
+      "division": "NL Central",
+      "rating": 1516,
+      "wins": 96,
+      "losses": 74,
+      "icon": "static/CHC.png"
+    },
+    {
+      "rank": 15,
+      "name": "Athletics",
+      "abbreviation": "ATH",
+      "division": "AL West",
+      "rating": 1514,
+      "wins": 76,
+      "losses": 86,
+      "icon": "static/OAK.png"
+    },
+    {
+      "rank": 16,
+      "name": "Baltimore Orioles",
+      "abbreviation": "BAL",
+      "division": "AL East",
+      "rating": 1505,
+      "wins": 75,
+      "losses": 87,
+      "icon": "static/BAL.png"
+    },
+    {
+      "rank": 17,
+      "name": "Arizona Diamondbacks",
+      "abbreviation": "ARI",
+      "division": "NL West",
+      "rating": 1500,
+      "wins": 80,
+      "losses": 83,
+      "icon": "static/AZ.png"
+    },
+    {
+      "rank": 18,
+      "name": "Pittsburgh Pirates",
+      "abbreviation": "PIT",
+      "division": "NL Central",
+      "rating": 1500,
+      "wins": 71,
+      "losses": 91,
+      "icon": "static/PIT.png"
+    },
+    {
+      "rank": 19,
+      "name": "Houston Astros",
+      "abbreviation": "HOU",
+      "division": "AL West",
+      "rating": 1500,
+      "wins": 87,
+      "losses": 75,
+      "icon": "static/HOU.png"
+    },
+    {
+      "rank": 20,
+      "name": "San Francisco Giants",
+      "abbreviation": "SFG",
+      "division": "NL West",
+      "rating": 1494,
+      "wins": 81,
+      "losses": 81,
+      "icon": "static/SF.png"
+    },
+    {
+      "rank": 21,
+      "name": "Texas Rangers",
+      "abbreviation": "TEX",
+      "division": "AL West",
+      "rating": 1462,
+      "wins": 81,
+      "losses": 81,
+      "icon": "static/TEX.png"
+    },
+    {
+      "rank": 22,
+      "name": "New York Mets",
+      "abbreviation": "NYM",
+      "division": "NL East",
+      "rating": 1452,
+      "wins": 83,
+      "losses": 79,
+      "icon": "static/NYM.png"
+    },
+    {
+      "rank": 23,
+      "name": "St. Louis Cardinals",
+      "abbreviation": "STL",
+      "division": "NL Central",
+      "rating": 1438,
+      "wins": 78,
+      "losses": 84,
+      "icon": "static/STL.png"
+    },
+    {
+      "rank": 24,
+      "name": "Detroit Tigers",
+      "abbreviation": "DET",
+      "division": "AL Central",
+      "rating": 1437,
+      "wins": 91,
+      "losses": 79,
+      "icon": "static/DET.png"
+    },
+    {
+      "rank": 25,
+      "name": "Tampa Bay Rays",
+      "abbreviation": "TBR",
+      "division": "AL East",
+      "rating": 1432,
+      "wins": 77,
+      "losses": 85,
+      "icon": "static/TB.png"
+    },
+    {
+      "rank": 26,
+      "name": "Minnesota Twins",
+      "abbreviation": "MIN",
+      "division": "AL Central",
+      "rating": 1422,
+      "wins": 71,
+      "losses": 92,
+      "icon": "static/MIN.png"
+    },
+    {
+      "rank": 27,
+      "name": "Washington Nationals",
+      "abbreviation": "WSN",
+      "division": "NL East",
+      "rating": 1420,
+      "wins": 66,
+      "losses": 96,
+      "icon": "static/WAS.png"
+    },
+    {
+      "rank": 28,
+      "name": "Chicago White Sox",
+      "abbreviation": "CHW",
+      "division": "AL Central",
+      "rating": 1415,
+      "wins": 60,
+      "losses": 102,
+      "icon": "static/CHW.png"
+    },
+    {
+      "rank": 29,
+      "name": "Los Angeles Angels",
+      "abbreviation": "LAA",
+      "division": "AL West",
+      "rating": 1369,
+      "wins": 72,
+      "losses": 90,
+      "icon": "static/LAA.png"
+    },
+    {
+      "rank": 30,
+      "name": "Colorado Rockies",
+      "abbreviation": "COL",
+      "division": "NL West",
+      "rating": 1283,
+      "wins": 43,
+      "losses": 119,
+      "icon": "static/COR.png"
+    }
+  ]
+}

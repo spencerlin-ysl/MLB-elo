@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Elo Ratings</title>
     <style>
+        * { box-sizing: border-box; }
         body {
             font-family: Arial, sans-serif;
             max-width: 1200px;
@@ -32,25 +33,113 @@
         tr:hover {
             background-color: #f5f5f5;
         }
-        .navbar {
-            background-color: #002D72;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-        .navbar a {
-            color: white;
+        .team-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             text-decoration: none;
-            padding: 10px;
-            margin-right: 10px;
+            color: inherit;
         }
-        .navbar a:hover {
-            background-color: #001A41;
+        .team-link:hover {
+            text-decoration: underline;
+        }
+ 
+        .header {
+            position: relative;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .header h1 {
+            color: #002D72;
+            margin: 0;
+        }
+ 
+        /* ── Archive dropdown ── */
+        .archive-dropdown {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .archive-btn {
+            background-color: #E8C04A;
+            color: #002D72;
+            border: none;
+            padding: 8px 14px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .archive-btn:hover {
+            background-color: #f0cc5a;
+        }
+        .archive-btn::after {
+            content: "▾";
+            font-size: 12px;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 4px);
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-width: 140px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 100;
+        }
+        .archive-dropdown:hover .dropdown-menu,
+        .archive-dropdown:focus-within .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 9px 16px;
+            text-decoration: none;
+            color: #002D72;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .dropdown-menu a:hover {
+            background-color: #f0f4ff;
+        }
+        .dropdown-menu .view-all {
+            border-top: 1px solid #ddd;
+            color: #555;
+            font-weight: normal;
+            font-size: 13px;
+        }
+        .no-archive {
+            padding: 9px 16px;
+            color: #888;
+            font-size: 13px;
         }
     </style>
 </head>
+
 <body>
 
-    <h1>MLB Elo Ratings</h1>
+    <div class="header">
+        <h1>MLB Elo Ratings</h1>
+        <div class="archive-dropdown">
+            <button class="archive-btn">📁 Archive</button>
+            <div class="dropdown-menu">
+                {% if archive_years %}
+                    {% for year in archive_years %}
+                        <a href="/archive/{{ year }}">{{ year }} Season</a>
+                    {% endfor %}
+                    <a href="/archive" class="view-all">View all years →</a>
+                {% else %}
+                    <span class="no-archive">No archives yet</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
     
     <table>
         <tr>

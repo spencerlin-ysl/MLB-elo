@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Elo Ratings</title>
     <style>
+        * { box-sizing: border-box; }
         body {
             font-family: Arial, sans-serif;
             max-width: 1200px;
@@ -32,25 +33,111 @@
         tr:hover {
             background-color: #f5f5f5;
         }
-        .navbar {
-            background-color: #002D72;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-        .navbar a {
-            color: white;
+        .team-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             text-decoration: none;
-            padding: 10px;
-            margin-right: 10px;
+            color: inherit;
         }
-        .navbar a:hover {
-            background-color: #001A41;
+        .team-link:hover {
+            text-decoration: underline;
+        }
+ 
+        .header {
+            position: relative;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .header h1 {
+            color: #002D72;
+            margin: 0;
+        }
+ 
+        /* ── Archive dropdown ── */
+        .archive-dropdown {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .archive-btn {
+            background-color: #E8C04A;
+            color: #002D72;
+            border: none;
+            padding: 8px 14px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .archive-btn:hover {
+            background-color: #f0cc5a;
+        }
+        .archive-btn::after {
+            content: "▾";
+            font-size: 12px;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 4px);
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-width: 140px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 100;
+        }
+        .archive-dropdown:hover .dropdown-menu,
+        .archive-dropdown:focus-within .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 9px 16px;
+            text-decoration: none;
+            color: #002D72;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .dropdown-menu a:hover {
+            background-color: #f0f4ff;
+        }
+        .dropdown-menu .view-all {
+            border-top: 1px solid #ddd;
+            color: #555;
+            font-weight: normal;
+            font-size: 13px;
+        }
+        .no-archive {
+            padding: 9px 16px;
+            color: #888;
+            font-size: 13px;
         }
     </style>
 </head>
+
 <body>
 
-    <h1>MLB Elo Ratings</h1>
+    <div class="header">
+        <h1>MLB Elo Ratings</h1>
+        <div class="archive-dropdown">
+            <button class="archive-btn">📁 Archive</button>
+            <div class="dropdown-menu">
+                
+                    
+                        <a href="archive/2025/index.html">2025 Season</a>
+                    
+                    <a href="archive/index.html" class="view-all">View all years →</a>
+                
+            </div>
+        </div>
+    </div>
     
     <table>
         <tr>
@@ -64,187 +151,18 @@
         <tr>
             <td>1</td>
             <td>
-                <a href="team/SDP.html" class="team-link">
-                    <img src="static/SD.png" alt="San Diego Padres" width="30" height="30" class="team-icon">
-                    San Diego Padres (SDP)
-                </a>
-            </td>
-            <td>NL West</td>
-            <td>1584</td>
-            <td>16-6</td>
-        </tr>
-        
-        <tr>
-            <td>2</td>
-            <td>
-                <a href="team/NYM.html" class="team-link">
-                    <img src="static/NYM.png" alt="New York Mets" width="30" height="30" class="team-icon">
-                    New York Mets (NYM)
-                </a>
-            </td>
-            <td>NL East</td>
-            <td>1581</td>
-            <td>15-7</td>
-        </tr>
-        
-        <tr>
-            <td>3</td>
-            <td>
-                <a href="team/LAD.html" class="team-link">
-                    <img src="static/LAD.png" alt="Los Angeles Dodgers" width="30" height="30" class="team-icon">
-                    Los Angeles Dodgers (LAD)
-                </a>
-            </td>
-            <td>NL West</td>
-            <td>1579</td>
-            <td>16-7</td>
-        </tr>
-        
-        <tr>
-            <td>4</td>
-            <td>
-                <a href="team/CHC.html" class="team-link">
-                    <img src="static/CHC.png" alt="Chicago Cubs" width="30" height="30" class="team-icon">
-                    Chicago Cubs (CHC)
-                </a>
-            </td>
-            <td>NL Central</td>
-            <td>1575</td>
-            <td>14-10</td>
-        </tr>
-        
-        <tr>
-            <td>5</td>
-            <td>
                 <a href="team/NYY.html" class="team-link">
                     <img src="static/NYY.png" alt="New York Yankees" width="30" height="30" class="team-icon">
                     New York Yankees (NYY)
                 </a>
             </td>
             <td>AL East</td>
-            <td>1564</td>
-            <td>14-8</td>
+            <td>1544</td>
+            <td>3-0</td>
         </tr>
         
         <tr>
-            <td>6</td>
-            <td>
-                <a href="team/SEA.html" class="team-link">
-                    <img src="static/SEA.png" alt="Seattle Mariners" width="30" height="30" class="team-icon">
-                    Seattle Mariners (SEA)
-                </a>
-            </td>
-            <td>AL West</td>
-            <td>1557</td>
-            <td>12-10</td>
-        </tr>
-        
-        <tr>
-            <td>7</td>
-            <td>
-                <a href="team/ARI.html" class="team-link">
-                    <img src="static/AZ.png" alt="Arizona Diamondbacks" width="30" height="30" class="team-icon">
-                    Arizona Diamondbacks (ARI)
-                </a>
-            </td>
-            <td>NL West</td>
-            <td>1552</td>
-            <td>13-9</td>
-        </tr>
-        
-        <tr>
-            <td>8</td>
-            <td>
-                <a href="team/TEX.html" class="team-link">
-                    <img src="static/TEX.png" alt="Texas Rangers" width="30" height="30" class="team-icon">
-                    Texas Rangers (TEX)
-                </a>
-            </td>
-            <td>AL West</td>
-            <td>1543</td>
-            <td>13-9</td>
-        </tr>
-        
-        <tr>
-            <td>9</td>
-            <td>
-                <a href="team/SFG.html" class="team-link">
-                    <img src="static/SF.png" alt="San Francisco Giants" width="30" height="30" class="team-icon">
-                    San Francisco Giants (SFG)
-                </a>
-            </td>
-            <td>NL West</td>
-            <td>1536</td>
-            <td>14-8</td>
-        </tr>
-        
-        <tr>
-            <td>10</td>
-            <td>
-                <a href="team/PHI.html" class="team-link">
-                    <img src="static/PHI.png" alt="Philadelphia Phillies" width="30" height="30" class="team-icon">
-                    Philadelphia Phillies (PHI)
-                </a>
-            </td>
-            <td>NL East</td>
-            <td>1532</td>
-            <td>13-9</td>
-        </tr>
-        
-        <tr>
-            <td>11</td>
-            <td>
-                <a href="team/CLE.html" class="team-link">
-                    <img src="static/CLE.png" alt="Cleveland Guardians" width="30" height="30" class="team-icon">
-                    Cleveland Guardians (CLE)
-                </a>
-            </td>
-            <td>AL Central</td>
-            <td>1532</td>
-            <td>12-9</td>
-        </tr>
-        
-        <tr>
-            <td>12</td>
-            <td>
-                <a href="team/MIL.html" class="team-link">
-                    <img src="static/MIL.png" alt="Milwaukee Brewers" width="30" height="30" class="team-icon">
-                    Milwaukee Brewers (MIL)
-                </a>
-            </td>
-            <td>NL Central</td>
-            <td>1524</td>
-            <td>12-10</td>
-        </tr>
-        
-        <tr>
-            <td>13</td>
-            <td>
-                <a href="team/DET.html" class="team-link">
-                    <img src="static/DET.png" alt="Detroit Tigers" width="30" height="30" class="team-icon">
-                    Detroit Tigers (DET)
-                </a>
-            </td>
-            <td>AL Central</td>
-            <td>1524</td>
-            <td>13-9</td>
-        </tr>
-        
-        <tr>
-            <td>14</td>
-            <td>
-                <a href="team/CIN.html" class="team-link">
-                    <img src="static/CIN.png" alt="Cincinnati Reds" width="30" height="30" class="team-icon">
-                    Cincinnati Reds (CIN)
-                </a>
-            </td>
-            <td>NL Central</td>
-            <td>1515</td>
-            <td>11-11</td>
-        </tr>
-        
-        <tr>
-            <td>15</td>
+            <td>2</td>
             <td>
                 <a href="team/TOR.html" class="team-link">
                     <img src="static/TOR.png" alt="Toronto Blue Jays" width="30" height="30" class="team-icon">
@@ -252,12 +170,155 @@
                 </a>
             </td>
             <td>AL East</td>
-            <td>1513</td>
-            <td>12-10</td>
+            <td>1544</td>
+            <td>3-0</td>
         </tr>
         
         <tr>
-            <td>16</td>
+            <td>3</td>
+            <td>
+                <a href="team/MIA.html" class="team-link">
+                    <img src="static/MIA.png" alt="Miami Marlins" width="30" height="30" class="team-icon">
+                    Miami Marlins (MIA)
+                </a>
+            </td>
+            <td>NL East</td>
+            <td>1544</td>
+            <td>3-0</td>
+        </tr>
+        
+        <tr>
+            <td>4</td>
+            <td>
+                <a href="team/MIL.html" class="team-link">
+                    <img src="static/MIL.png" alt="Milwaukee Brewers" width="30" height="30" class="team-icon">
+                    Milwaukee Brewers (MIL)
+                </a>
+            </td>
+            <td>NL Central</td>
+            <td>1544</td>
+            <td>3-0</td>
+        </tr>
+        
+        <tr>
+            <td>5</td>
+            <td>
+                <a href="team/LAD.html" class="team-link">
+                    <img src="static/LAD.png" alt="Los Angeles Dodgers" width="30" height="30" class="team-icon">
+                    Los Angeles Dodgers (LAD)
+                </a>
+            </td>
+            <td>NL West</td>
+            <td>1544</td>
+            <td>3-0</td>
+        </tr>
+        
+        <tr>
+            <td>6</td>
+            <td>
+                <a href="team/TEX.html" class="team-link">
+                    <img src="static/TEX.png" alt="Texas Rangers" width="30" height="30" class="team-icon">
+                    Texas Rangers (TEX)
+                </a>
+            </td>
+            <td>AL West</td>
+            <td>1517</td>
+            <td>2-1</td>
+        </tr>
+        
+        <tr>
+            <td>7</td>
+            <td>
+                <a href="team/CIN.html" class="team-link">
+                    <img src="static/CIN.png" alt="Cincinnati Reds" width="30" height="30" class="team-icon">
+                    Cincinnati Reds (CIN)
+                </a>
+            </td>
+            <td>NL Central</td>
+            <td>1517</td>
+            <td>2-1</td>
+        </tr>
+        
+        <tr>
+            <td>8</td>
+            <td>
+                <a href="team/BAL.html" class="team-link">
+                    <img src="static/BAL.png" alt="Baltimore Orioles" width="30" height="30" class="team-icon">
+                    Baltimore Orioles (BAL)
+                </a>
+            </td>
+            <td>AL East</td>
+            <td>1515</td>
+            <td>2-1</td>
+        </tr>
+        
+        <tr>
+            <td>9</td>
+            <td>
+                <a href="team/WSN.html" class="team-link">
+                    <img src="static/WAS.png" alt="Washington Nationals" width="30" height="30" class="team-icon">
+                    Washington Nationals (WSN)
+                </a>
+            </td>
+            <td>NL East</td>
+            <td>1515</td>
+            <td>2-1</td>
+        </tr>
+        
+        <tr>
+            <td>10</td>
+            <td>
+                <a href="team/DET.html" class="team-link">
+                    <img src="static/DET.png" alt="Detroit Tigers" width="30" height="30" class="team-icon">
+                    Detroit Tigers (DET)
+                </a>
+            </td>
+            <td>AL Central</td>
+            <td>1512</td>
+            <td>2-1</td>
+        </tr>
+        
+        <tr>
+            <td>11</td>
+            <td>
+                <a href="team/ATL.html" class="team-link">
+                    <img src="static/ATL.png" alt="Atlanta Braves" width="30" height="30" class="team-icon">
+                    Atlanta Braves (ATL)
+                </a>
+            </td>
+            <td>NL East</td>
+            <td>1512</td>
+            <td>2-1</td>
+        </tr>
+        
+        <tr>
+            <td>12</td>
+            <td>
+                <a href="team/NYM.html" class="team-link">
+                    <img src="static/NYM.png" alt="New York Mets" width="30" height="30" class="team-icon">
+                    New York Mets (NYM)
+                </a>
+            </td>
+            <td>NL East</td>
+            <td>1512</td>
+            <td>2-1</td>
+        </tr>
+        
+        <tr>
+            <td>13</td>
+            <td>
+                <a href="team/STL.html" class="team-link">
+                    <img src="static/STL.png" alt="St. Louis Cardinals" width="30" height="30" class="team-icon">
+                    St. Louis Cardinals (STL)
+                </a>
+            </td>
+            <td>NL Central</td>
+            <td>1512</td>
+            <td>2-1</td>
+        </tr>
+        
+        <tr>
+            <td>14</td>
             <td>
                 <a href="team/HOU.html" class="team-link">
                     <img src="static/HOU.png" alt="Houston Astros" width="30" height="30" class="team-icon">
@@ -266,7 +327,33 @@
             </td>
             <td>AL West</td>
             <td>1505</td>
-            <td>10-11</td>
+            <td>2-2</td>
+        </tr>
+        
+        <tr>
+            <td>15</td>
+            <td>
+                <a href="team/SEA.html" class="team-link">
+                    <img src="static/SEA.png" alt="Seattle Mariners" width="30" height="30" class="team-icon">
+                    Seattle Mariners (SEA)
+                </a>
+            </td>
+            <td>AL West</td>
+            <td>1503</td>
+            <td>2-2</td>
+        </tr>
+        
+        <tr>
+            <td>16</td>
+            <td>
+                <a href="team/CLE.html" class="team-link">
+                    <img src="static/CLE.png" alt="Cleveland Guardians" width="30" height="30" class="team-icon">
+                    Cleveland Guardians (CLE)
+                </a>
+            </td>
+            <td>AL Central</td>
+            <td>1497</td>
+            <td>2-2</td>
         </tr>
         
         <tr>
@@ -278,77 +365,12 @@
                 </a>
             </td>
             <td>AL West</td>
-            <td>1504</td>
-            <td>11-10</td>
+            <td>1495</td>
+            <td>2-2</td>
         </tr>
         
         <tr>
             <td>18</td>
-            <td>
-                <a href="team/BOS.html" class="team-link">
-                    <img src="static/BOS.png" alt="Boston Red Sox" width="30" height="30" class="team-icon">
-                    Boston Red Sox (BOS)
-                </a>
-            </td>
-            <td>AL East</td>
-            <td>1495</td>
-            <td>12-11</td>
-        </tr>
-        
-        <tr>
-            <td>19</td>
-            <td>
-                <a href="team/ATH.html" class="team-link">
-                    <img src="static/OAK.png" alt="Athletics" width="30" height="30" class="team-icon">
-                    Athletics (ATH)
-                </a>
-            </td>
-            <td>AL West</td>
-            <td>1484</td>
-            <td>10-12</td>
-        </tr>
-        
-        <tr>
-            <td>20</td>
-            <td>
-                <a href="team/ATL.html" class="team-link">
-                    <img src="static/ATL.png" alt="Atlanta Braves" width="30" height="30" class="team-icon">
-                    Atlanta Braves (ATL)
-                </a>
-            </td>
-            <td>NL East</td>
-            <td>1483</td>
-            <td>8-13</td>
-        </tr>
-        
-        <tr>
-            <td>21</td>
-            <td>
-                <a href="team/MIA.html" class="team-link">
-                    <img src="static/MIA.png" alt="Miami Marlins" width="30" height="30" class="team-icon">
-                    Miami Marlins (MIA)
-                </a>
-            </td>
-            <td>NL East</td>
-            <td>1467</td>
-            <td>9-12</td>
-        </tr>
-        
-        <tr>
-            <td>22</td>
-            <td>
-                <a href="team/BAL.html" class="team-link">
-                    <img src="static/BAL.png" alt="Baltimore Orioles" width="30" height="30" class="team-icon">
-                    Baltimore Orioles (BAL)
-                </a>
-            </td>
-            <td>AL East</td>
-            <td>1466</td>
-            <td>9-12</td>
-        </tr>
-        
-        <tr>
-            <td>23</td>
             <td>
                 <a href="team/TBR.html" class="team-link">
                     <img src="static/TB.png" alt="Tampa Bay Rays" width="30" height="30" class="team-icon">
@@ -356,38 +378,12 @@
                 </a>
             </td>
             <td>AL East</td>
-            <td>1454</td>
-            <td>9-13</td>
+            <td>1488</td>
+            <td>1-2</td>
         </tr>
         
         <tr>
-            <td>24</td>
-            <td>
-                <a href="team/STL.html" class="team-link">
-                    <img src="static/STL.png" alt="St. Louis Cardinals" width="30" height="30" class="team-icon">
-                    St. Louis Cardinals (STL)
-                </a>
-            </td>
-            <td>NL Central</td>
-            <td>1451</td>
-            <td>9-13</td>
-        </tr>
-        
-        <tr>
-            <td>25</td>
-            <td>
-                <a href="team/WSN.html" class="team-link">
-                    <img src="static/WAS.png" alt="Washington Nationals" width="30" height="30" class="team-icon">
-                    Washington Nationals (WSN)
-                </a>
-            </td>
-            <td>NL East</td>
-            <td>1447</td>
-            <td>9-13</td>
-        </tr>
-        
-        <tr>
-            <td>26</td>
+            <td>19</td>
             <td>
                 <a href="team/KCR.html" class="team-link">
                     <img src="static/KCR.png" alt="Kansas City Royals" width="30" height="30" class="team-icon">
@@ -395,12 +391,12 @@
                 </a>
             </td>
             <td>AL Central</td>
-            <td>1436</td>
-            <td>9-14</td>
+            <td>1488</td>
+            <td>1-2</td>
         </tr>
         
         <tr>
-            <td>27</td>
+            <td>20</td>
             <td>
                 <a href="team/PIT.html" class="team-link">
                     <img src="static/PIT.png" alt="Pittsburgh Pirates" width="30" height="30" class="team-icon">
@@ -408,12 +404,25 @@
                 </a>
             </td>
             <td>NL Central</td>
-            <td>1429</td>
-            <td>8-15</td>
+            <td>1488</td>
+            <td>1-2</td>
         </tr>
         
         <tr>
-            <td>28</td>
+            <td>21</td>
+            <td>
+                <a href="team/SDP.html" class="team-link">
+                    <img src="static/SD.png" alt="San Diego Padres" width="30" height="30" class="team-icon">
+                    San Diego Padres (SDP)
+                </a>
+            </td>
+            <td>NL West</td>
+            <td>1488</td>
+            <td>1-2</td>
+        </tr>
+        
+        <tr>
+            <td>22</td>
             <td>
                 <a href="team/MIN.html" class="team-link">
                     <img src="static/MIN.png" alt="Minnesota Twins" width="30" height="30" class="team-icon">
@@ -421,12 +430,51 @@
                 </a>
             </td>
             <td>AL Central</td>
-            <td>1422</td>
-            <td>7-15</td>
+            <td>1485</td>
+            <td>1-2</td>
         </tr>
         
         <tr>
-            <td>29</td>
+            <td>23</td>
+            <td>
+                <a href="team/CHC.html" class="team-link">
+                    <img src="static/CHC.png" alt="Chicago Cubs" width="30" height="30" class="team-icon">
+                    Chicago Cubs (CHC)
+                </a>
+            </td>
+            <td>NL Central</td>
+            <td>1485</td>
+            <td>1-2</td>
+        </tr>
+        
+        <tr>
+            <td>24</td>
+            <td>
+                <a href="team/BOS.html" class="team-link">
+                    <img src="static/BOS.png" alt="Boston Red Sox" width="30" height="30" class="team-icon">
+                    Boston Red Sox (BOS)
+                </a>
+            </td>
+            <td>AL East</td>
+            <td>1483</td>
+            <td>1-2</td>
+        </tr>
+        
+        <tr>
+            <td>25</td>
+            <td>
+                <a href="team/PHI.html" class="team-link">
+                    <img src="static/PHI.png" alt="Philadelphia Phillies" width="30" height="30" class="team-icon">
+                    Philadelphia Phillies (PHI)
+                </a>
+            </td>
+            <td>NL East</td>
+            <td>1483</td>
+            <td>1-2</td>
+        </tr>
+        
+        <tr>
+            <td>26</td>
             <td>
                 <a href="team/CHW.html" class="team-link">
                     <img src="static/CHW.png" alt="Chicago White Sox" width="30" height="30" class="team-icon">
@@ -434,8 +482,47 @@
                 </a>
             </td>
             <td>AL Central</td>
-            <td>1375</td>
-            <td>5-16</td>
+            <td>1456</td>
+            <td>0-3</td>
+        </tr>
+        
+        <tr>
+            <td>27</td>
+            <td>
+                <a href="team/ATH.html" class="team-link">
+                    <img src="static/OAK.png" alt="Athletics" width="30" height="30" class="team-icon">
+                    Athletics (ATH)
+                </a>
+            </td>
+            <td>AL West</td>
+            <td>1456</td>
+            <td>0-3</td>
+        </tr>
+        
+        <tr>
+            <td>28</td>
+            <td>
+                <a href="team/SFG.html" class="team-link">
+                    <img src="static/SF.png" alt="San Francisco Giants" width="30" height="30" class="team-icon">
+                    San Francisco Giants (SFG)
+                </a>
+            </td>
+            <td>NL West</td>
+            <td>1456</td>
+            <td>0-3</td>
+        </tr>
+        
+        <tr>
+            <td>29</td>
+            <td>
+                <a href="team/ARI.html" class="team-link">
+                    <img src="static/AZ.png" alt="Arizona Diamondbacks" width="30" height="30" class="team-icon">
+                    Arizona Diamondbacks (ARI)
+                </a>
+            </td>
+            <td>NL West</td>
+            <td>1456</td>
+            <td>0-3</td>
         </tr>
         
         <tr>
@@ -447,14 +534,14 @@
                 </a>
             </td>
             <td>NL West</td>
-            <td>1372</td>
-            <td>4-17</td>
+            <td>1456</td>
+            <td>0-3</td>
         </tr>
         
     </table>
 
 
-    <p>Last updated: 2025-04-21 12:47:49 Eastern Time</p>
+    <p>Last updated: 2026-03-30 19:39:13 Eastern Time</p>
     
 </body>
 </html>

@@ -22,7 +22,7 @@ class Game:
         self.away_score = away_score
         self.date = date
 
-def initialize_teams():
+def initialize_teams(year=None):
     teams = {
         # AL East
         "Yankees": Team("New York Yankees", "NYY", "AL East", icon = "NYY.png"),
@@ -69,30 +69,37 @@ def initialize_teams():
     
     return teams
 
-def sample_games(teams):
-    url = "https://plaintextsports.com/mlb/2025/schedule"
+def sample_games(teams, year=None):
+    if year is None:
+        year = date.today().year
 
-    payload = {}
-    headers = {}
-
-    response = requests.request("GET", url, headers=headers, data=payload)
+    url = f"https://plaintextsports.com/mlb/{year}/schedule"
+    response = requests.get(url, headers={}, data={})
     soup = BeautifulSoup(response.text, "html.parser")
 
     seen_dates = set()
     games = []
 
+    current_year = date.today().year
+    if year < current_year:
+        cutoff = date(year, 12, 31)
+    else:
+        cutoff = date.today() - timedelta(days=1)
+
     for container in soup.find_all("div"):
         date_tag = container.find("b")
-        if date_tag and "2025" in date_tag.get_text(strip=True):
-            parsed_date = datetime.strptime(date_tag.get_text(strip=True), "%A, %B %d, %Y").date()
-            if parsed_date <= date.today() - timedelta(days=1) and parsed_date not in seen_dates:
+        if date_tag and f"{year}" in date_tag.get_text(strip=True):
+            try:
+                parsed_date = datetime.strptime(date_tag.get_text(strip=True), "%A, %B %d, %Y").date()
+            except ValueError:
+                continue
+            if parsed_date <= cutoff and parsed_date not in seen_dates:
                 seen_dates.add(parsed_date)
                 game_day = container.find("div", class_="day-games")
                 if game_day:
                     games_link = game_day.find_all("a")
-                    
-                    for i in range(0, len(games_link), 3):  # Check there are at least 3 <a> tags for a full game entry
-                        if i + 2 < len(games_link):  # Ensure there are 3 elements for a full game
+                    for i in range(0, len(games_link), 3):
+                        if i + 2 < len(games_link):
                             away_team_name = games_link[i].get_text(strip=True)
                             home_team_name = games_link[i+1].get_text(strip=True)
                             raw_score = games_link[i+2].get_text(strip=True)
@@ -101,13 +108,10 @@ def sample_games(teams):
                             if away_team_name in teams and home_team_name in teams:
                                 away_team = teams[away_team_name]
                                 home_team = teams[home_team_name]
-                                
-                                score_text = raw_score.split("/")[0]
                                 if "Ppd" not in score_text and "Rain" not in score_text:
                                     try:
                                         away_score = int(score_text.split("-")[0])
                                         home_score = int(score_text.split("-")[1])
-                                        
                                         games.append(Game(home_team, away_team, home_score, away_score, str(parsed_date)))
                                     except ValueError:
                                         pass

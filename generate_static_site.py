@@ -3,6 +3,10 @@ import pytz
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader
 from data import initialize_teams, sample_games, process_games
+from archive_season import maybe_auto_archive, generate_archive_index
+
+# Check if it is time to archive
+maybe_auto_archive()
 
 # Create build directory
 os.makedirs('build', exist_ok=True)
@@ -22,9 +26,20 @@ sorted_teams = sorted(teams.values(), key=lambda x: x.rating, reverse=True)
 eastern = pytz.timezone('America/New_York')
 last_updated = datetime.now(eastern)
 
+# Collect available archive years for the navbar dropdown
+archive_root = "build/archive"
+archive_years = sorted(
+    [
+        int(d)
+        for d in os.listdir(archive_root)
+        if d.isdigit() and os.path.isdir(os.path.join(archive_root, d))
+    ],
+    reverse=True,
+) if os.path.exists(archive_root) else []
+
 # Generate index.html
 index_template = env.get_template('index.html')
-index_html = index_template.render(teams=sorted_teams, last_updated=last_updated)
+index_html = index_template.render(teams=sorted_teams, last_updated=last_updated, archive_years=archive_years)
 with open('build/index.html', 'w') as f:
     f.write(index_html)
 
@@ -56,8 +71,11 @@ for team_name, team in teams.items():
     team.id = team.abbreviation  # Use abbreviation as ID
     
     # Generate team page
-    team_html = team_template.render(team=team, last_updated=last_updated)
+    team_html = team_template.render(team=team, last_updated=last_updated, archive_years=archive_years)
     with open(f'build/team/{team.abbreviation}.html', 'w') as f:
         f.write(team_html)
+
+# Generate new archive pages in case new years appears
+generate_archive_index()
 
 print("Static site generated in 'build' directory")
